@@ -12,7 +12,7 @@ pipeline {
     stage('Ping Hosts2') {
       steps {
         sh '''
-          ansible all -i hosts -m ping
+          ansible-playbook -i hosts playbook.yaml
         '''
     }
     }
