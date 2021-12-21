@@ -20,8 +20,11 @@
     replace: 'SELINUX=disabled'       # alterando para SELINUX=disabled
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'	      # definindo condicoes para executar quando o SO for CentOS ou RedHat
 
-- name: Desabilitando SELINUX de forma temporaria
-  shell: setenforce 0            # Modulo shell executa um comando no linux, caso nao encontre um modulo para fazer essa tarefa
+- name: Desabilitando SELINUX de forma permanente
+  replace:          # Modulo responsavel para substituir
+    dest: /etc/selinux/config         # destino do arquivo
+    regexp: 'SELINUX=permissive'        # identificando a linha que vai ser substituia pelo modulo replace abaixo
+    replace: 'SELINUX=disabled'       # alterando para SELINUX=disabled
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
 
 # Gerenciamento de pacotes e atualizacao do Sistema Operacional
