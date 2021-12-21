@@ -5,7 +5,7 @@ pipeline {
     stage('Hello') {
       steps {
         sh '''
-          ansible -i hosts -m ping
+          ansible all -i hosts -m ping
         '''
       }
     }
