@@ -1,4 +1,7 @@
 ---
+- name: reload systemctl daemon
+  command: systemctl daemon-reload
+
 - name: Restart SSH
   systemd:
     name: sshd
