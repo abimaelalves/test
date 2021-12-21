@@ -1,11 +1,13 @@
 pipeline {
-    agent any
-    
-    stages {
-        stage('Deploying Ansible') {
-            steps {
-                sh "ansible -i host -m ping'"
-            }
-        }
+  agent any
+
+  stages {
+    stage('Hello') {
+      steps {
+        sh '''
+          ansible -i hosts -m ping
+        '''
+      }
     }
+  }
 }
