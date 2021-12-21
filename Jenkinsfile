@@ -1,11 +1,10 @@
 pipeline {
     agent any
-    }
-
+    
     stages {
-        stage('Test Ping ansible') {
+        stage('Deploying Ansible') {
             steps {
-                sh "ansible -i hosts -m ping"
+                sh "sudo ansible-playbook /home/ubuntu/ansible-lives/playbook-ec2.yml --extra-vars='nameinvault=$params.NAMEINST'"
             }
         }
     }
