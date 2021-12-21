@@ -8,6 +8,7 @@ pipeline {
     stage('Ping Hosts') {
       steps {
         sh '''
+          export ANSIBLE_FORCE_COLOR=true
           ansible all -i hosts -m ping
         '''
     }
@@ -15,6 +16,7 @@ pipeline {
     stage('Install pacotes') {
       steps {
         sh '''
+          export ANSIBLE_FORCE_COLOR=true
           ansible-playbook -i hosts playbook.yaml
         '''
     }
