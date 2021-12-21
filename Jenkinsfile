@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   stages {
-    stage('Hello') {
+    stage('Ping Hosts') {
       steps {
         sh '''
           ansible all -i hosts -m ping
