@@ -7,16 +7,14 @@ pipeline {
         sh '''
           ansible all -i hosts -m ping
         '''
-      }
     }
-      
-    stage('Ping Hosts') {
+    }
+    stage('Ping Hosts2') {
       steps {
         sh '''
-        ansible-playbook -i hosts playbook.yaml
+          ansible all -i hosts -m ping
         '''
-        }
-     } 
-   }
+    }
+    }
+  }
 }
-
