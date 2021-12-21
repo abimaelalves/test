@@ -10,4 +10,14 @@ pipeline {
       }
     }
   }
+
+    stages {
+    stage('Ping Hosts') {
+      steps {
+        sh '''
+          ansible-playbook -i hosts playbook.yaml
+        '''
+      }
+    }
+  }
 }
