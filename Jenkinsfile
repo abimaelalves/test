@@ -17,7 +17,7 @@ pipeline {
       steps {
         sh '''
           export ANSIBLE_FORCE_COLOR=true
-          ansible-playbook -i hosts playbook.yaml
+          ansible-playbook -i hosts playbook.yaml -vv
         '''
     }
     }

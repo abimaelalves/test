@@ -38,13 +38,23 @@
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
 
 - name: Remocao de pacotes desncessarios
-  yum: name={{ item }} state=absent
-  with_items:
+  yum:
+    state: absent
+    name: 
     - firewalld
     - NetworkManager
     - NetworkManager-libnm
     - postfix
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
+
+#- name: Remocao de pacotes desncessarios
+#  yum: name={{ item }} state=absent
+#  with_items:
+#    - firewalld
+#    - NetworkManager
+#    - NetworkManager-libnm
+#    - postfix
+#  when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
 
 - name: Atualizacao do Sistema Operacional
   apt: update_cache=yes upgrade=yes
