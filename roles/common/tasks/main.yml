@@ -6,34 +6,34 @@
   with_items:                                           # relacao da variavel item acima
     - '# --- Variaveis e Alias Customizados ---#'       # definindo um comentario, ele vai jogar no final do arquivo
     - 'export HISTFILEFORMAT="%d/%m/%Y - %H/%M/%S - "'  # definindo o formato do comando history
-    - 'export HISTSIZE="5000"'				# definindo o tamanho do historico 
-    - 'export HISTFILESIZE="5000"'			# tamanho que vai ter no arquivo history
-    - 'alias ls="ls -lh --color"'			# definindo alias, ele vai listar colorido permissoes e tamanho
+    - 'export HISTSIZE="5000"'				                  # definindo o tamanho do historico 
+    - 'export HISTFILESIZE="5000"'		                 	# tamanho que vai ter no arquivo history
+    - 'alias ls="ls -lh --color"'		                  	# definindo alias, ele vai listar colorido permissoes e tamanho
     - 'alias grep="grep -i --color"'                    # diferenciar case sensitive e trazer saida colorida
-    - 'alias vi="vim"'					# alias para vim
-    - 'alias rm="rm -i"'				# automanticamente coloca o modo interativo para pedir confirmacao no delete de algum arquivo
+    - 'alias vi="vim"'				                        	# alias para vim
+    - 'alias rm="rm -i"'				                        # automanticamente coloca o modo interativo para pedir confirmacao no delete de algum arquivo
 
 - name: Desabilitando SELINUX de forma permanente
-  replace:	    # Modulo responsavel para substituir
-    dest: /etc/selinux/config	      # destino do arquivo
-    regexp: 'SELINUX=enforcing'        # identificando a linha que vai ser substituia pelo modulo replace abaixo
-    replace: 'SELINUX=disabled'       # alterando para SELINUX=disabled
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'	      # definindo condicoes para executar quando o SO for CentOS ou RedHat
+  replace:	                                                                   # Modulo responsavel para substituir
+    dest: /etc/selinux/config	                                                 # destino do arquivo
+    regexp: 'SELINUX=enforcing'                                                # identificando a linha que vai ser substituia pelo modulo replace abaixo
+    replace: 'SELINUX=disabled'                                                # alterando para SELINUX=disabled
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'   # definindo condicoes para executar quando o SO for CentOS ou RedHat
 
 - name: Desabilitando SELINUX de forma permanente
-  replace:          # Modulo responsavel para substituir
-    dest: /etc/selinux/config         # destino do arquivo
-    regexp: 'SELINUX=permissive'        # identificando a linha que vai ser substituia pelo modulo replace abaixo
-    replace: 'SELINUX=disabled'       # alterando para SELINUX=disabled
+  replace:                                                              # Modulo responsavel para substituir
+    dest: /etc/selinux/config                                           # destino do arquivo
+    regexp: 'SELINUX=permissive'                                        # identificando a linha que vai ser substituia pelo modulo replace abaixo
+    replace: 'SELINUX=disabled'                                         # alterando para SELINUX=disabled
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
 
 # Gerenciamento de pacotes e atualizacao do Sistema Operacional
-- name: Instalacao do repositorio epel-release # Epel repositorio importante para o SO, onde conseguimos instalar pacotes atraves dele
+- name: Instalacao do repositorio epel-release                          # Epel repositorio importante para o SO, onde conseguimos instalar pacotes atraves dele
   yum: name=epel-release state=latest
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
 
 - name: Atualizacao do Sistema Operacional
-  yum: name=* state=latest update_cache=yes   # Atualização do SO e atualizar
+  yum: name=* state=latest update_cache=yes                             # Atualização do SO e atualizar
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
 
 - name: Instalacao de pacotes - RedHat/Centos
