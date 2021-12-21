@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  options {
+        ansiColor('xterm')
+    }
 
   stages {
     stage('Ping Hosts') {
@@ -9,7 +12,7 @@ pipeline {
         '''
     }
     }
-    stage('Ping Hosts2') {
+    stage('Install pacotes') {
       steps {
         sh '''
           ansible-playbook -i hosts playbook.yaml
