@@ -11,7 +11,6 @@ pipeline {
     }
   }
 
-    stages {
     stage('Ping Hosts') {
       steps {
         sh '''
@@ -19,5 +18,5 @@ pipeline {
         '''
       }
     }
-  }
+  
 }
